@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.*;
 
 @Entity
@@ -21,6 +23,7 @@ public class AppUser {
 	private Long Id;
 	@Column(unique= true)
 	private String username;
+	@JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
 	private String password;
 	private boolean activated;
 	@ManyToMany(fetch=FetchType.EAGER)

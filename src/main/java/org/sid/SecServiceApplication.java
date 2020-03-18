@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class SecServiceApplication {
@@ -24,7 +25,12 @@ public class SecServiceApplication {
 			Stream.of("user1","user2","user3","admin").forEach(un->{
 				accountService.saveUser(un,"1234","1234");
 			});
+			accountService.addRoleToUser("admin", "ADMIN");
 			
 		};
+	}
+	@Bean
+	BCryptPasswordEncoder getBCPE() {
+		return new BCryptPasswordEncoder();
 	}
 }
